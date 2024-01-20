@@ -1,0 +1,7 @@
+lib_chain:
+    chains:
+    -
+            parent_command: 'foo:hello'
+            children:
+                -
+                    command: 'bar:hi'

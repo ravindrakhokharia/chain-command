@@ -1,7 +1,14 @@
 monolog:
     channels:
         - deprecation # Deprecations are logged in the dedicated "deprecation" channel when it exists
-
+        - chain_command # added for chain bundle
+    handlers:
+        chain_command_log:
+            type: stream
+            path: "%kernel.logs_dir%/command.log"
+            level: debug
+            formatter: chain.logger.formatter
+            channels: [chain_command]
 when@dev:
     monolog:
         handlers:
