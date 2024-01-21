@@ -32,3 +32,11 @@ Review logs
 ```bash
  docker-compose exec php less var/log/command.log
 ```
+
+Tests
+----
+Run PhpUnit Test cases
+
+```bash
+docker-compose exec php bin/phpunit lib/ChainBundle/tests
+```

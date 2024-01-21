@@ -67,7 +67,7 @@ class ConsoleCommandSubscriber implements EventSubscriberInterface
         $this->log(sprintf('Executing %s command itself first:', $commandName));
 
         // Execute Parent Command
-        $input = new ArrayInput(['command' => $commandName], $command->getDefinition());
+        $input = new ArrayInput(['command' => $commandName]);
         $this->executeCommand($commandName, $input);
 
         foreach ($parentCommand as $child) {

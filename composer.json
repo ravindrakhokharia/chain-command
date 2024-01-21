@@ -29,12 +29,17 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/",
-            "Lib\\": "lib/"
+            "Lib\\ChainBundle\\": "lib/ChainBundle/src/",
+            "Lib\\BarBundle\\": "lib/BarBundle/src/",
+            "Lib\\FooBundle\\": "lib/FooBundle/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "App\\Tests\\": "tests/",
+            "Lib\\ChainBundle\\Tests\\": "lib/ChainBundle/tests/",
+            "Lib\\BarBundle\\Tests\\": "lib/BarBundle/tests/",
+            "Lib\\FooBundle\\Tests\\": "lib/FooBundle/tests/"
         }
     },
     "replace": {
@@ -68,5 +73,11 @@
             "require": "7.0.*",
             "docker": true
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "symfony/browser-kit": "7.0.*",
+        "symfony/css-selector": "7.0.*",
+        "symfony/phpunit-bridge": "^7.0"
     }
 }

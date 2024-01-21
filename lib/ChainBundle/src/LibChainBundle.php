@@ -11,12 +11,12 @@ class LibChainBundle extends AbstractBundle
 {
     public function configure(DefinitionConfigurator $definition) : void
     {
-        $definition->import('./config/definition.php');
+        $definition->import('../config/definition.php');
     }
 
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder) : void
     {
-        $container->import('./config/services.php');
+        $container->import('../config/services.php');
 
         $container->parameters()->set('lib_chain.chains', $config['chains']);
     }
