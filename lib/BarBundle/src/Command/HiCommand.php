@@ -7,6 +7,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+/**
+ * Hi Command for bundle Bar, prints a static message
+ */
 class HiCommand extends Command
 {
     public function __construct()
@@ -14,6 +17,12 @@ class HiCommand extends Command
         parent::__construct('bar:hi');
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * 
+     * @return int
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
@@ -23,6 +32,9 @@ class HiCommand extends Command
         return Command::SUCCESS;
     }
 
+    /**
+     * @return string|null
+     */
     public static function getDefaultDescription(): ?string
     {
         return "This is Hi command from Bar Bundle.";

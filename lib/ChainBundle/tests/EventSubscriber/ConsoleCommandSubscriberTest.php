@@ -22,12 +22,24 @@ use Symfony\Component\Console\Output\BufferedOutput;
  */
 final class ConsoleCommandSubscriberTest extends TestCase
 {
+    /**
+     * @var ConsoleCommandSubscriber
+     */
     private ConsoleCommandSubscriber $consoleCommandSubscriber;
 
+    /**
+     * @var LoggerInterface
+     */
     private LoggerInterface $chainCommandLogger;
 
+    /**
+     * @var ChainCommandManager
+     */
     private ChainCommandManager $chainCommandManager;
 
+    /**
+     * @var Application
+     */
     private Application $application;
 
     /**
@@ -61,6 +73,9 @@ final class ConsoleCommandSubscriberTest extends TestCase
     }
 
 
+    /**
+     * @return void
+     */
     public function testOnCommandforParent(): void
     {
         $this->chainCommandManager
@@ -101,6 +116,9 @@ final class ConsoleCommandSubscriberTest extends TestCase
         $this->assertStringContainsString('Hi from Bar', $event->getOutput()->fetch());
     }
 
+    /**
+     * @return void
+     */
     public function testOnCommandforChild(): void
     {
         $this->chainCommandManager

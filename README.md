@@ -23,10 +23,17 @@ Setup the project using docker command
 Demo - Run the command 
 
 ```bash
- docker-compose exec php php app/console foo:hello
+ docker-compose exec php php bin/console foo:hello
 ```
 
 ###Step 4
+Demo - Run the command - Error expected
+
+```bash
+ docker-compose exec php php bin/console bar:hi
+```
+
+###Step 5
 Review logs
 
 ```bash

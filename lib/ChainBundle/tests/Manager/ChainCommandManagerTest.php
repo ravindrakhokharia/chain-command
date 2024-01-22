@@ -13,8 +13,14 @@ use PHPUnit\Framework\Attributes\DataProvider;
  */
 final class ChainCommandManagerTest extends TestCase
 {
+    /**
+     * @var ChainCommandManager
+     */
     private ChainCommandManager $chainCommandManager;
 
+    /**
+     * @var array
+     */
     private array $chains;
 
     /**
@@ -71,6 +77,9 @@ final class ChainCommandManagerTest extends TestCase
         );
     }
 
+    /**
+     * @return void
+     */
     public function testGetChildCommand(): void
     {
         $this->assertSame(
@@ -79,6 +88,9 @@ final class ChainCommandManagerTest extends TestCase
         );
     }
 
+    /**
+     * @return void
+     */
     public function testGetParentCommand(): void
     {
         $this->assertSame(
@@ -92,6 +104,9 @@ final class ChainCommandManagerTest extends TestCase
         );
     }
 
+    /**
+     * @return array
+     */
     public static function isParentCommandProvider(): array
     {
         return [
@@ -101,6 +116,9 @@ final class ChainCommandManagerTest extends TestCase
         ];
     }
 
+    /**
+     * @return array
+     */
     public static function isChildCommandProvider(): array
     {
         return [

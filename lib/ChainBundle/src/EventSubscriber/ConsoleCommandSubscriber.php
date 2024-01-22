@@ -13,16 +13,34 @@ use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Event\ConsoleTerminateEvent;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Application;
+
+/**
+ * Class ConsoleCommandSubscriber
+ * 
+ * Reads and execute the command chain as per the configurations
+ */
 class ConsoleCommandSubscriber implements EventSubscriberInterface
 {
     private ?Application $application = null;
     private ?OutputInterface $globalOutput = null;
+
+    /**
+     * Constructor 
+     *
+     * @param LoggerInterface $chainCommandLogger
+     * @param ChainCommandManager $chainCommandManager
+     */
     public function __construct(
         private readonly LoggerInterface $chainCommandLogger,
         private readonly ChainCommandManager $chainCommandManager,
     ) {
     }
 
+    /**
+     * @param ConsoleCommandEvent $event
+     * 
+     * @return void
+     */
     public function onCommand(ConsoleCommandEvent $event): void
     {
         $command = $event->getCommand();
@@ -46,6 +64,11 @@ class ConsoleCommandSubscriber implements EventSubscriberInterface
         $this->globalOutput = null;
     }
 
+    /**
+     * @param ConsoleTerminateEvent $event
+     * 
+     * @return void
+     */
     public function onTerminate(ConsoleTerminateEvent $event): void
     {
         $command = $event->getCommand();
@@ -55,6 +78,11 @@ class ConsoleCommandSubscriber implements EventSubscriberInterface
         }
     }
 
+    /**
+     * @param Command $command
+     * 
+     * @return [type]
+     */
     private function handleParentCommand(Command $command)
     {
         $commandName = $command->getName();
@@ -82,11 +110,22 @@ class ConsoleCommandSubscriber implements EventSubscriberInterface
         $this->log(sprintf('Execution of %s chain completed.', $commandName));
     }
 
+    /**
+     * @param string $message
+     * 
+     * @return void
+     */
     private function log(string $message): void
     {
         $this->chainCommandLogger->log("info", $message);
     }
 
+    /**
+     * @param string $commandName
+     * @param ArrayInput $input
+     * 
+     * @return BufferedOutput
+     */
     private function executeCommand(string $commandName, ArrayInput $input): BufferedOutput
     {
         $localoutput = new BufferedOutput();
@@ -100,6 +139,9 @@ class ConsoleCommandSubscriber implements EventSubscriberInterface
         return $localoutput;
     }
 
+    /**
+     * @return array
+     */
     public static function getSubscribedEvents(): array
     {
         return [
